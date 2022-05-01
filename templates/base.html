@@ -1,0 +1,36 @@
+{% load static %}
+<!-- templates/base.html -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    {# Load the tag library #}
+    {% load django_bootstrap5 %}
+
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <meta charset="utf-8">
+
+    {% block header %}
+      <title>
+        {% block title %}
+          KM1107 - WiFi Portal
+        {% endblock title%}
+      </title>
+    {% endblock header %}
+
+  </head>
+  <body>
+    <main>
+      {% block content %}
+      {% endblock %}
+    </main>
+    <footer>
+      {% block footer %}
+      {% endblock %}
+    </footer>
+  </body>
+</html>
