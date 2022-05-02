@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<div class="container d-flex mt-5" style="width: 70%;">
+    <div class="col">
+        <h1 class="text-center">Encuestados</h1>
+        <table class="table table-striped mt-5">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">Nombre</th>
+                    <th class="text-center" scope="col">Apellidos</th>
+                    <th class="text-center" scope="col">Email</th>
+                    <th class="text-center" scope="col">Teléfono</th>
+                    <th class="text-center" scope="col">Fecha Nacimiento</th>
+                    <th class="text-center" scope="col">Nacionalidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for survey in survey_list %}
+                <tr>
+                    <td class="text-center">{{survey.first_name}}</td>
+                    <td class="text-center">{{survey.last_name}}</td>
+                    <td class="text-center">{{survey.email}}</td>
+                    <td class="text-center">{{survey.telephone}}</td>
+                    <td class="text-center">{{survey.birth_date}}</td>
+                    <td class="text-center">{{survey.nationality}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>    
+        <div class="d-flex justify-content-center">
+            <a href="{% url 'survey:new' %}" class="d-block btn btn-primary btn-lg my-5">Nuevo</a>
+        </div>
+    </div> 
+</div>
+
+{% endblock content %}
