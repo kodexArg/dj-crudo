@@ -1,4 +1,5 @@
 version: '3.9'
+
 services:
   db:
     image: postgres
@@ -8,6 +9,7 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+
   web:
     build: . 
     ports:
@@ -18,9 +20,10 @@ services:
         echo "if you're watching this, please fire me... "
         python /app/manage.py makemigrations
         python /app/manage.py migrate
-        echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'a@a.com', 'pass')" | python /app/manage.py shell
+        echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'a@a.com', 'vanevan3')" | python /app/manage.py shell
         python /app/manage.py runserver 0.0.0.0:8000
-        echo "mental note in a yml cuz why not > replace all this shit with gunicorn."
+        # echo "mental note in a yml cuz why not > replace all this shit with gunicorn, fixing /statics."
+        # gunicorn --bind :8000 config.wsgi:application
     volumes:
       - ./app/:/app
       - ./remote-vscode:/root/.vscode-server/extensions
@@ -28,7 +31,10 @@ services:
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+    env_file:
+      - .env
     depends_on:
       - db
+
 volumes:
   postgres_data:
