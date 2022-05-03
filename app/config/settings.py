@@ -169,3 +169,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+from config.pipe import run_on_pipe
+# run_on_pipe("iptables -L")
