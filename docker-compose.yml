@@ -14,12 +14,10 @@ services:
     build: . 
     ports:
       - '8000:8000'
-    entrypoint: ["/bin/sh","-c"]
     command:
       - gunicorn --bind :8000 config.wsgi:application
     volumes:
       - ./app/:/app
-      - ./remote-vscode:/root/.vscode-server/extensions
       - /pipe:/hostpipe
     environment:
       - POSTGRES_NAME=postgres

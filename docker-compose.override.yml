@@ -2,6 +2,7 @@ version: '3.0'
 
 services:
   web:
+    entrypoint: ["/bin/bash", "-c"]
     command:
       - |
         echo "if you're watching this, please fire me... "
@@ -9,3 +10,8 @@ services:
         python /app/manage.py migrate
         echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'a@a.com', 'vanevan3')" | python /app/manage.py shell
         python /app/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./app:/app
+      - /pipe:/hostpipe
+      - ./remote-vscode:/root/.vscode-server
+
