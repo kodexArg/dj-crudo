@@ -19,10 +19,10 @@ def run_on_pipe(cmd: str):
     cmd = f"echo \"{cmd}\""
     cmdl = cmd.split()
     print('*' * 50)
-    print(f"Running: {cmd}")
-    try:
-        with open('/hostpipe', 'w') as hostpipe:
-            subprocess.Popen(cmdl, stdin=hostpipe)
-    except FileNotFoundError as fnfe:
-        print(f"ERROR: {fnfe}")
+    print(f"Running {cmd} and sending through /hostpipe to /pipe")
+    # try:
+    with open('/hostpipe', 'w') as hostpipe:
+        subprocess.Popen(cmdl, stdin=hostpipe)
+    # except FileNotFoundError as fnfe:
+    # print(f"ERROR: {fnfe}")
     print('*' * 50)
